@@ -3,5 +3,5 @@ type onBoardingSlidesTypes = {
   image: any;
   title: string,
   secondTitle: string;
-  subtitle: string;
+  subTitle: string;
 };

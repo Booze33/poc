@@ -1,9 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { runOnJS, useSharedValue, withSpring } from 'react-native-reanimated'
-import { snapPoint, useVector } from 'react-native-redash'
-import { HEIGHT, LEFT_SNAP_POINTS, MARGIN_WIDTH, MIN_LEDGE, NEXT, PREV, RIGHT_SNAP_POINTS, Side, WIDTH } from '@/configs/constants';
-import { Gesture } from 'react-native-gesture-handler';
+import React, { useEffect } from "react";
+import { Platform, StyleSheet, View } from "react-native";
+import Wave from "./wave";
+import Animated, {
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { snapPoint, useVector } from "react-native-redash";
+import { HEIGHT, MARGIN_WIDTH, MIN_LEDGE, Side, WIDTH } from "@/configs/constants";
+
+const PREV = WIDTH;
+const NEXT = 0;
+const LEFT_SNAP_POINTS = [MARGIN_WIDTH, PREV];
+const RIGHT_SNAP_POINTS = [NEXT, WIDTH - MARGIN_WIDTH];
 
 interface SliderProps {
   index: number;
@@ -89,10 +100,48 @@ export default function Slider({
     }
   });
 
+  const leftStyle = useAnimatedStyle(() => ({
+    zIndex: zIndex.value,
+  }));
+
+  useEffect(() => {
+    if(Platform.OS === 'ios'){
+      right.x.value = withSpring(WIDTH  * 0.167);
+    } else {
+      right.x.value = withSpring(WIDTH  * 0.185);
+    }
+  }, [left, right])
+
   return (
-    <View>
-      <Text>Slider</Text>
-    </View>
+    <GestureDetector gesture={pandGesture}>
+      <Animated.View style={StyleSheet.absoluteFill}>
+        {current}
+        {prev && (
+          <Animated.View 
+            style={[StyleSheet.absoluteFill, leftStyle]}>
+              <Wave
+                side={Side.LEFT}
+                position={left}
+                isTransitioning={isTransitionLeft}
+              >
+                {prev}
+              </Wave>
+
+          </Animated.View>
+        )}
+        {next && (
+          <View style={StyleSheet.absoluteFill}>
+            <Wave
+              side={Side.RIGHT}
+              position={right}
+              isTransitioning={isTransitionRight}
+            >
+              {next}
+            </Wave>
+          </View>
+        )}
+      </Animated.View>
+    </GestureDetector>
   )
 }
 
