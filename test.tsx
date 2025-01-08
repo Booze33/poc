@@ -1,48 +1,50 @@
-import React, { useState } from "react";
-import { onBoardingSlides } from "@/configs/constants";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import Slider from "@/components/onboarding/slider";
-import Slide from "@/components/onboarding/slide";
-
-export default function OnboardingScreen() {
-  const [index, setIndex] = useState(0);
-  const prev = onBoardingSlides[index - 1];
-  const next = onBoardingSlides[index + 1];
-
-  return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <Slider
-        key={index}
-        index={index}
-        setIndex={setIndex}
-        prev={
-          prev && (
-            <Slide
-              index={index}
-              setIndex={setIndex}
-              slide={prev}
-              totalSlides={onBoardingSlides.length}
-            />
-          )
+{
+  "expo": {
+    "name": "Becodemy",
+    "slug": "Becodemy-App",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "becodemy",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#080393"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.becodemy.tutorial"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.becodemy.tutorial"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.500604689956-gv4jqon1uv37m2ieggd1ijr1jkrbblmt"
         }
-        next={
-          next && (
-            <Slide
-              index={index}
-              setIndex={setIndex}
-              slide={next}
-              totalSlides={onBoardingSlides.length}
-            />
-          )
-        }
-      >
-        <Slide
-          slide={onBoardingSlides[index]}
-          index={index}
-          setIndex={setIndex}
-          totalSlides={onBoardingSlides.length}
-        />
-      </Slider>
-    </GestureHandlerRootView>
-  );
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a59c0afd-1ec9-4a88-9a44-6d26de8b1505"
+      }
+    }
+  }
 }

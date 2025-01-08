@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text } from 'react-native'
 import * as SecureStore from 'expo-secure-store'
+import { Redirect } from "expo-router";
 
 export default function index() {
   const [loggedInUser, setLoggedInUser] = useState(false);
