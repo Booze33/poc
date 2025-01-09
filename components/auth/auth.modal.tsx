@@ -1,5 +1,5 @@
 import { View, Text, Pressable, Image, Platform } from "react-native";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { BlurView } from "expo-blur";
 import { fontSizes, windowHeight, windowWidth } from "@/themes/app.constant";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
@@ -23,7 +23,7 @@ export default function AuthModal({
     } else {
       GoogleSignin.configure({
         webClientId:
-          "500604689956-74tau857bhoviihkt0jsqitldq4tsjlf.apps.googleusercontent.com",
+          "424187892140-dvnn3sk8gac7c3ojrdd0fk5un5g4plbt.apps.googleusercontent.com",
       });
     }
   };
