@@ -13,8 +13,11 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^6.2.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.12.0",
     "prisma": "^6.2.1"
   }
 }
