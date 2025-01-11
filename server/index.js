@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import prisma from "./utils/prisma.js";
 import jwt from "jsonwebtoken";
 import { sendToken } from "./utils/sendToken.js";
-//import {isAuthenticated} from "./middleware/auth.js";
+import {isAuthenticated} from "./middleware/auth.js";
 
 dotenv.config();
 
@@ -48,17 +48,17 @@ app.post("/login", async (req, res) => {
 });
 
 // get logged in user
-// app.get("/me", isAuthenticated, async (req, res, next) => {
-//   try {
-//     const user = req.user;
-//     res.status(201).json({
-//       success: true,
-//       user,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+app.get("/me", isAuthenticated, async (req, res, next) => {
+  try {
+    const user = req.user;
+    res.status(201).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

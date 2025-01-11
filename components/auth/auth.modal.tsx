@@ -45,7 +45,7 @@ export default function AuthModal({
       clientSecret: process.env.EXPO_PUBLIC_GITHUB_CLIENT_SECRET!,
       scopes: ["identity"],
       redirectUri: makeRedirectUri({
-        scheme: "becodemy",
+        scheme: "Tcodemy",
       }),
     },
     githubAuthEndpoints
@@ -62,7 +62,7 @@ export default function AuthModal({
     const result = await WebBrowser.openAuthSessionAsync(
       request?.url!,
       makeRedirectUri({
-        scheme: "becodemy",
+        scheme: "Tcodemy",
       })
     );
 
