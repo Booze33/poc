@@ -21,7 +21,7 @@ export default function CoursesScreen() {
       }}
     >
       <ScrollView showsVerticalScrollIndicator={false}
-       style={{marginTop: verticalScale(-35)}}
+        style={{marginTop: verticalScale(-35)}}
       >
         <StatusBar barStyle={!theme.dark ? "dark-content" : "light-content"} />
         <View style={{ marginHorizontal: windowWidth(20) }}>
